@@ -19,9 +19,13 @@ public:
 	ULMAWeaponComponent();
 
 	void Fire();
+	UFUNCTION(BlueprintCallable)
 	void StopFire();
 	void Reload();
 	void OnOutOfAmmoHandler();
+
+	UFUNCTION(BlueprintCallable)
+	bool GetCurrentWeaponAmmo(FAmmoWeapon& AmmoWeapon) const;
 
 protected:
 	// Called when the game starts

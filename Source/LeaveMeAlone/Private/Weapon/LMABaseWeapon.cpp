@@ -4,8 +4,6 @@
 #include "Weapon/LMABaseWeapon.h"
 #include "Components/SkeletalMeshComponent.h"
 
-DEFINE_LOG_CATEGORY_STATIC(LogWeapon, All, All);
-
 // Sets default values
 ALMABaseWeapon::ALMABaseWeapon()
 {
@@ -78,7 +76,6 @@ bool ALMABaseWeapon::IsCurrentClipFull() const
 void ALMABaseWeapon::DecrementBullets()
 {
 	CurrentAmmoWeapon.Bullets--;
-	UE_LOG(LogWeapon, Display, TEXT("Bullets = %s"), *FString::FromInt(CurrentAmmoWeapon.Bullets));
 	if (IsCurrentClipEmpty())
 	{
 		OnOutOfAmmo.Broadcast();
