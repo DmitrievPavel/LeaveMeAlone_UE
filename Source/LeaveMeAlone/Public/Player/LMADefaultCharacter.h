@@ -24,6 +24,9 @@ public:
 	UFUNCTION()
 	ULMAHealthComponent* GetHealthComponent() const { return HealthComponent; } 
 
+	UFUNCTION(BlueprintCallable)
+	float GetStamina() const { return Stamina; };
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -65,6 +68,9 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
 	ULMAWeaponComponent* WeaponComponent;
 
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite)
+	float MaxStamina = 100.0f;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -80,7 +86,6 @@ private:
 	float DefaultSpeed = 300.0f;		   
 	float SprintSpeed = 600.0f;		   
 	float Stamina;			   
-	float MaxStamina = 100.0f;
 	float StaminaDrainRate = 5.0f;	   
 	float StaminaRecoveryRate = 2.0f; 
 

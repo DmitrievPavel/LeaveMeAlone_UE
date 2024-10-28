@@ -71,10 +71,19 @@ void ALMADefaultCharacter::Tick(float DeltaTime)
 
 	if (IsSprinting)
 	{
-		Stamina -= StaminaDrainRate * DeltaTime;
+		float velocity = GetCharacterMovement()->Velocity.Size();
+		if (velocity > 0)
+		{
+			Stamina -= StaminaDrainRate * DeltaTime;
+		}
+
 		if (Stamina <= 0)
 		{
 			Stamina = 0;
+			StopSprint();
+		}
+		if (velocity == 0)
+		{
 			StopSprint();
 		}
 	}
@@ -157,7 +166,8 @@ void ALMADefaultCharacter::RotationPlayerOnCursor()
 
 void ALMADefaultCharacter::StartSprint() 
 {
-	if (!IsSprinting && Stamina > 0)
+	float velocity = GetCharacterMovement()->Velocity.Size();
+	if (!IsSprinting && Stamina > 0 && velocity > 0)
 	{
 		IsSprinting = true;
 		GetCharacterMovement()->MaxWalkSpeed = SprintSpeed;
@@ -166,6 +176,7 @@ void ALMADefaultCharacter::StartSprint()
 
 void ALMADefaultCharacter::StopSprint()
 {
+	float velocity = GetCharacterMovement()->Velocity.Size();
 	if (IsSprinting)
 	{
 		IsSprinting = false;
