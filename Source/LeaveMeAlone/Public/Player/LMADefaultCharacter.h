@@ -92,6 +92,7 @@ private:
 	void MoveForward(float Value);
 	void MoveRight(float Value);
 	void ZoomCamera(float Value);
+	UFUNCTION()
 	void OnDeath();
 	void OnHealthChanged(float NewHealth);
 	void RotationPlayerOnCursor();
