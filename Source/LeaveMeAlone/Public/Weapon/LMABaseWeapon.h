@@ -83,5 +83,5 @@ public:
 private:
 	FAmmoWeapon CurrentAmmoWeapon;
 	FTimerHandle FireTimer;
-	float FireRate = 0.2f;
+	float FireRate = 0.1f;
 };
