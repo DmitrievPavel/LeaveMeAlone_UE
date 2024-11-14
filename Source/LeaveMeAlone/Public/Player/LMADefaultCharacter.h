@@ -86,8 +86,8 @@ private:
 	float DefaultSpeed = 300.0f;		   
 	float SprintSpeed = 600.0f;		   
 	float Stamina;			   
-	float StaminaDrainRate = 5.0f;	   
-	float StaminaRecoveryRate = 2.0f; 
+	float StaminaDrainRate = 10.0f;	   
+	float StaminaRecoveryRate = 5.0f; 
 
 	void MoveForward(float Value);
 	void MoveRight(float Value);
