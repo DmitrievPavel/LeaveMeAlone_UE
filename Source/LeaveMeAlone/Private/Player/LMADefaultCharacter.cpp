@@ -134,6 +134,7 @@ void ALMADefaultCharacter::ZoomCamera(float Value)
 void ALMADefaultCharacter::OnDeath()
 {
 	CurrentCursor->DestroyRenderState_Concurrent();
+	WeaponComponent->StopFire();
 	PlayAnimMontage(DeathMontage);
 	GetCharacterMovement()->DisableMovement();
 	SetLifeSpan(5.0f);

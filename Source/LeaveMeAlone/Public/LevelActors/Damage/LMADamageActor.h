@@ -8,6 +8,7 @@
 
 class USphereComponent;
 class UStaticMeshComponent;
+class UNiagaraSystem;
 
 UCLASS()
 class LEAVEMEALONE_API ALMADamageActor : public AActor
@@ -29,6 +30,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Damage")
 	float SphereRadius = 100.0f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Fire")
+	UNiagaraSystem* FireEffect;
 
 protected:
 	// Called when the game starts or when spawned

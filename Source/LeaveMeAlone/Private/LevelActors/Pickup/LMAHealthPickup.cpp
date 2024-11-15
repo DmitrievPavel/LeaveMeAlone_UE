@@ -5,6 +5,8 @@
 #include "Component/LMAHealthComponent.h"
 #include "Components/SphereComponent.h"
 #include "Player/LMADefaultCharacter.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 
 // Sets default values
 ALMAHealthPickup::ALMAHealthPickup()
@@ -13,6 +15,7 @@ ALMAHealthPickup::ALMAHealthPickup()
 	PrimaryActorTick.bCanEverTick = true;
 
 	SphereComponent = CreateDefaultSubobject<USphereComponent>("SphereComponent");
+	SphereComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	SphereComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Overlap);
 	SetRootComponent(SphereComponent);
 }
@@ -21,7 +24,7 @@ ALMAHealthPickup::ALMAHealthPickup()
 void ALMAHealthPickup::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	const auto TraceFX = UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), HealEffect, GetActorLocation());
 }
 
 // Called every frame
@@ -57,8 +60,8 @@ bool ALMAHealthPickup::GivePickup(ALMADefaultCharacter* Character)
 void ALMAHealthPickup::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
-	const auto Charcter = Cast<ALMADefaultCharacter>(OtherActor);
-	if (GivePickup(Charcter))
+	const auto Character = Cast<ALMADefaultCharacter>(OtherActor);
+	if (Character != nullptr && GivePickup(Character))
 	{
 		PickupWasTaken();
 	}

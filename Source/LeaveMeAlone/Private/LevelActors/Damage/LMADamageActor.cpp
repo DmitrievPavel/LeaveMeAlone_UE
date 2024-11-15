@@ -5,6 +5,8 @@
 #include "Components/SphereComponent.h"
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"
+#include "NiagaraComponent.h"
+#include "NiagaraFunctionLibrary.h"
 
 // Sets default values
 ALMADamageActor::ALMADamageActor()
@@ -26,7 +28,8 @@ ALMADamageActor::ALMADamageActor()
 void ALMADamageActor::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	const auto TraceFX = UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FireEffect, GetActorLocation());
 }
 
 // Called every frame

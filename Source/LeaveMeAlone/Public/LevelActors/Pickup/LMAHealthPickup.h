@@ -8,6 +8,7 @@
 
 class USphereComponent;
 class ALMADefaultCharacter;
+class UNiagaraSystem;
 
 UCLASS()
 class LEAVEMEALONE_API ALMAHealthPickup : public AActor
@@ -30,6 +31,9 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pickup", meta = (ClampMin = "5.0", ClampMax = "100.0"))
 	float HealthFromPickup = 100.0f;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Effect")
+	UNiagaraSystem* HealEffect;
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
 
