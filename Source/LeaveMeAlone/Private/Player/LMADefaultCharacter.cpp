@@ -167,6 +167,7 @@ void ALMADefaultCharacter::RotationPlayerOnCursor()
 
 void ALMADefaultCharacter::StartSprint() 
 {
+	WeaponComponent->StopFire();
 	float velocity = GetCharacterMovement()->Velocity.Size();
 	if (!IsSprinting && Stamina > 0 && velocity > 0)
 	{

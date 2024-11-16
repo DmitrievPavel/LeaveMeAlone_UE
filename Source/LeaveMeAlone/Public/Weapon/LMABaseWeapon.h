@@ -66,7 +66,7 @@ protected:
 	FString TraceName = "Tracer";
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
-	float Damage = 20;
+	float Damage = 25;
 
 	void MakeDamage(const FHitResult& HitResult);
 
